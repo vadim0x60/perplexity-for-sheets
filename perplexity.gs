@@ -1,13 +1,22 @@
 function Perplexity(api_key, task) {
   payload = JSON.stringify(task)
 
-  const response = UrlFetchApp.fetch("https://api.perplexity.ai/chat/completions", {
-    method: "POST",
-    contentType: "application/json",
-    headers: { "Authorization": "Bearer " + api_key },
-    payload: payload,
-  });
-  const json = JSON.parse(response.getContentText());
+  code = 429
+  wait = Math.random() * 1000
+  while (code == 429) {
+    Utilities.sleep(wait)
+    response = UrlFetchApp.fetch("https://api.perplexity.ai/chat/completions", {
+      method: "POST",
+      contentType: "application/json",
+      headers: { "Authorization": "Bearer " + api_key },
+      payload: payload,
+      muteHttpExceptions: true
+    });
+    code = response.getResponseCode();
+    wait *= 2
+  }
+  if (code >= 400) throw Error(response)
+  json = JSON.parse(response.getContentText());
   return JSON.parse(json.choices[0].message.content)
 }
 
