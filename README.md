@@ -14,3 +14,11 @@ This should end up in Google Workspace Marketplace, but Google is taking its swe
 
 Fill a row (or a column) in your table by selecting the first cell there of and defining it as `=RESEARCH(api_key, prompt, item, blanks)`.
 For example, the following `=RESEARCH(MY_KEY, $A$1, A3, B$2:D$2)` means that cell $A1$ defines the general task (in this case, "Research the country to find out basic facts for travellers. Answer in a couple of words, not sentences"), cell A3 holds the current country (United Kingdom), And B$2:D$2 is the header, defining which blanks need to be filled for every country. In this case, capital, currency and plug type
+
+## Privacy policy
+
+The add-on doesn't interact with any servers I control (feel free to look at `perplexity.gs` and verify this), so the only parties that get access to your data are [Google](https://support.google.com/docs/answer/10381817?hl=en) and [Perplexity](https://www.perplexity.ai/hub/legal/privacy-policy), not me.
+
+## Terms of service
+
+Do whatever you want with it (including code editing and redistribution) as long as you don't hold me responsible for anything.
